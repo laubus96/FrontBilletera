@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "../BilleteraMVCAngular/Bundles",
+            "outputPath": "./Back/BilleteraMVCAngular/Bundles",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -26,13 +26,11 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
-
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-                "node_modules/popper.js/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js" 
-
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -126,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AppBilletera"
+    }
+  },
+  "defaultProject": "AppBilletera",
+  "cli": {
+    "analytics": "92bc471a-a51b-497f-beb5-4f9c312267a7"
+  }
 }

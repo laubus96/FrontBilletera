@@ -1,22 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatPaginatorModule} from '@angular/material/Paginator';
-import {MatProgressBarModule  } from '@angular/material/Progress-bar';
-import {MatSnackBarModule  } from '@angular/material/Snack-Bar';
-import {MatSortModule} from '@angular/material/Sort';
+import { MatPaginatorModule } from '@angular/material/Paginator';
+import { MatProgressBarModule } from '@angular/material/Progress-bar';
+import { MatSnackBarModule } from '@angular/material/Snack-Bar';
+import { MatSortModule } from '@angular/material/Sort';
 
-import { MatTableModule} from '@angular/material/Table';
+import { MatTableModule } from '@angular/material/Table';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LoginComponent
-  ],
+  declarations: [AppComponent, HomeComponent, LoginComponent],
   imports: [
     BrowserModule,
     MatPaginatorModule,
@@ -24,8 +26,17 @@ import { LoginComponent } from './component/login/login.component';
     MatSnackBarModule,
     MatSortModule,
     MatTableModule,
+    NgbModule,
+    AppRoutingModule,
+
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
